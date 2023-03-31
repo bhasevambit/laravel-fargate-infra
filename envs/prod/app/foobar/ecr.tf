@@ -1,9 +1,9 @@
-resource "aws_ecr_repository" "nginx" {
+# /// コストインパクト低のため、削除不要 ///
+module "nginx" {
+  source = "../../../../modules/ecr"
+
   name = "example-prod-foobar-nginx"
 
-  tags = {
-    Name = "example-prod-foobar-nginx"
-  }
 }
 
 # module "nginx" {
