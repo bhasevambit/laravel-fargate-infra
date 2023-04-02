@@ -22,6 +22,7 @@ resource "aws_route53_record" "certificate_validation" {
   zone_id = data.aws_route53_zone.this.id
 }
 
+# /// コストインパクト「有」のため、不使用時は削除する事 ("terrafomrs apply -var='enable_alb=false'"によるオプション指定でも作成回避可能) ///
 # resource "aws_route53_record" "root_a" {
 #   count = var.enable_alb ? 1 : 0
 
