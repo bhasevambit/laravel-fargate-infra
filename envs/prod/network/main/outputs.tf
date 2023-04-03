@@ -22,9 +22,9 @@ output "subnet_public" {
 #   value = aws_subnet.private
 # }
 
-# output "vpc_this_id" {
-#   value = aws_vpc.this.id
-# }
+output "vpc_this_id" {
+  value = aws_vpc.this.id
+}
 
 # output "db_subnet_group_this_id" {
 #   value = aws_db_subnet_group.this.id
