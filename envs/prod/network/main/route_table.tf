@@ -34,13 +34,13 @@ resource "aws_route_table" "private" {
 }
 
 # /// コストインパクト「有」のため、不使用時は削除する事 ("terrafomrs apply -var='enable_nat_gateway=false'"によるオプション指定でも作成回避可能) ///
-# resource "aws_route" "nat_gateway_private" {
-#   for_each = var.enable_nat_gateway ? var.azs : {}
+resource "aws_route" "nat_gateway_private" {
+  for_each = var.enable_nat_gateway ? var.azs : {}
 
-#   destination_cidr_block = "0.0.0.0/0"
-#   nat_gateway_id         = aws_nat_gateway.this[var.single_nat_gateway ? keys(var.azs)[0] : each.key].id
-#   route_table_id         = aws_route_table.private[each.key].id
-# }
+  destination_cidr_block = "0.0.0.0/0"
+  nat_gateway_id         = aws_nat_gateway.this[var.single_nat_gateway ? keys(var.azs)[0] : each.key].id
+  route_table_id         = aws_route_table.private[each.key].id
+}
 
 # /// コストインパクト低のため、削除不要 ///
 resource "aws_route_table_association" "private" {

@@ -1,4 +1,4 @@
 variable "enable_alb" {
   type    = bool
-  default = true
+  default = false #コスト低減のために、defaultで、「false」とし、ALB関連Resourceを作成しない形とする
 }

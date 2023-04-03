@@ -22,10 +22,10 @@ variable "azs" {
 
 variable "enable_nat_gateway" {
   type    = bool
-  default = true
+  default = false #コスト低減のために、defaultで、「false」とし、NAT Gateway関連Resourceを作成しない形とする
 }
 
 variable "single_nat_gateway" {
   type    = bool
-  default = true
+  default = true #コスト低減のために、シングルNAT Gateway(=2つのAvailability Zoneに1つのみのNAT Gateway配置)構成をdefaultとする
 }
