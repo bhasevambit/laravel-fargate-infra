@@ -1,3 +1,4 @@
+# /// コストインパクト低のため、削除不要 ///
 resource "aws_db_option_group" "this" {
   name = "${local.system_name}-${local.env_name}-${local.service_name}"
 
