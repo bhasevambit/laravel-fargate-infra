@@ -26,9 +26,9 @@ output "vpc_this_id" {
   value = aws_vpc.this.id
 }
 
-# output "db_subnet_group_this_id" {
-#   value = aws_db_subnet_group.this.id
-# }
+output "db_subnet_group_this_id" {
+  value = aws_db_subnet_group.this.id
+}
 
 # output "elasticache_subnet_group_this_name" {
 #   value = aws_elasticache_subnet_group.this.name
