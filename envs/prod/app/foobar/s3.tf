@@ -1,3 +1,4 @@
+# /// コストインパクト低のため、削除不要 ///
 resource "aws_s3_bucket" "env_file" {
   bucket = "laravel-app-dev-${local.name_prefix}-${local.service_name}-env-file"
 
