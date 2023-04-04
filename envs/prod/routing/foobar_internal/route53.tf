@@ -7,8 +7,9 @@ resource "aws_route53_zone" "this" {
   }
 }
 
-# /// コストインパクト低のため、削除不要 ///
+# /// コストインパクト低ではあるが、CNAMEでの名前解決先となるRDS DB Instanceの作成とタイミングを合わせての自動作成/削除とする ///
 resource "aws_route53_record" "db_cname" {
+  count   = var.enable_rds ? 1 : 0 #RDS DB Instanceの稼働状況に合わせるために、count変数での条件分岐を追加
   zone_id = aws_route53_zone.this.zone_id
   name    = "db.${aws_route53_zone.this.name}"
   type    = "CNAME"
