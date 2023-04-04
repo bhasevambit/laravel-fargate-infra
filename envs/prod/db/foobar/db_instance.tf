@@ -11,7 +11,7 @@ resource "aws_db_instance" "this" {
 
   // Credentials Settings
   username = local.service_name
-  password = "MustChangeStrongPassword!"
+  password = "MustChangeStrongPassword!" #仮設定. 後ほど変更
 
   // DB instance class
   instance_class = "db.t3.micro"
@@ -26,7 +26,7 @@ resource "aws_db_instance" "this" {
 
   // Connectivity
   db_subnet_group_name = data.terraform_remote_state.network_main.outputs.db_subnet_group_this_id
-  publicly_accessible  = false
+  publicly_accessible  = false #VPC外からのアクセスを禁止
   vpc_security_group_ids = [
     data.terraform_remote_state.network_main.outputs.security_group_db_foobar_id,
   ]
@@ -46,7 +46,7 @@ resource "aws_db_instance" "this" {
   backup_window            = "17:00-18:00"
   copy_tags_to_snapshot    = true
   delete_automated_backups = true
-  skip_final_snapshot      = true
+  skip_final_snapshot      = true #terraformにて削除できるように「有効」とし、スナップショットの作成をスキップする
 
   // Encryption
   storage_encrypted = true
@@ -73,7 +73,7 @@ resource "aws_db_instance" "this" {
   maintenance_window         = "fri:18:00-fri:19:00"
 
   // Deletion protection
-  deletion_protection = false
+  deletion_protection = false #削除保護は、terraformでの一括destroyにて削除できるように「無効」とする
 
   tags = {
     Name = "${local.system_name}-${local.env_name}-${local.service_name}"
