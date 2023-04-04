@@ -8,16 +8,16 @@ resource "aws_route53_zone" "this" {
 }
 
 # /// コストインパクト低のため、削除不要 ///
-# resource "aws_route53_record" "db_cname" {
-#   zone_id = aws_route53_zone.this.zone_id
-#   name    = "db.${aws_route53_zone.this.name}"
-#   type    = "CNAME"
-#   ttl     = 300
+resource "aws_route53_record" "db_cname" {
+  zone_id = aws_route53_zone.this.zone_id
+  name    = "db.${aws_route53_zone.this.name}"
+  type    = "CNAME"
+  ttl     = 300
 
-#   records = [
-#     data.terraform_remote_state.db_foobar.outputs.db_instance_this_address
-#   ]
-# }
+  records = [
+    data.terraform_remote_state.db_foobar.outputs.db_instance_this_address
+  ]
+}
 
 # /// コストインパクト低のため、削除不要 ///
 # resource "aws_route53_record" "cache_cname" {
