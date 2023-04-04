@@ -6,9 +6,9 @@ output "security_group_vpc_id" {
   value = aws_security_group.vpc.id
 }
 
-# output "security_group_db_foobar_id" {
-#   value = aws_security_group.db_foobar.id
-# }
+output "security_group_db_foobar_id" {
+  value = aws_security_group.db_foobar.id
+}
 
 # output "security_group_cache_foobar_id" {
 #   value = aws_security_group.cache_foobar.id
