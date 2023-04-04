@@ -15,7 +15,7 @@ resource "aws_route53_record" "db_cname" {
   ttl     = 300
 
   records = [
-    data.terraform_remote_state.db_foobar.outputs.db_instance_this_address
+    data.terraform_remote_state.db_foobar.outputs.db_instance_this_address #tfstateに登録されているRDS MySQL DBインスタンスのエンドポイントを設定(これにより、RDS DBインスタンスを再作成しても常にDBエンドポイントを追うことができる)
   ]
 }
 
