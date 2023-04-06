@@ -7,7 +7,7 @@ resource "aws_route53_zone" "this" {
   }
 }
 
-# /// コストインパクト低ではあるが、CNAMEでの名前解決先となるRDS DB Instanceの作成とタイミングを合わせての自動作成/削除とする ///
+# /// コストインパクト低ではあるが、CNAMEでの名前解決先となるRDS DB Instanceの作成/削除とタイミングを合わせる ///
 resource "aws_route53_record" "db_cname" {
   count   = var.enable_rds ? 1 : 0 #RDS DB Instanceの稼働状況に合わせるために、count変数での条件分岐を追加
   zone_id = aws_route53_zone.this.zone_id
@@ -20,14 +20,15 @@ resource "aws_route53_record" "db_cname" {
   ]
 }
 
-# /// コストインパクト低のため、削除不要 ///
-# resource "aws_route53_record" "cache_cname" {
-#   zone_id = aws_route53_zone.this.zone_id
-#   name    = "cache.${aws_route53_zone.this.name}"
-#   type    = "CNAME"
-#   ttl     = 300
+# /// コストインパクト低ではあるが、CNAMEでの名前解決先となるElastiCache Instanceの作成/削除とタイミングを合わせる ///
+resource "aws_route53_record" "cache_cname" {
+  count   = var.enable_cache ? 1 : 0 #ElastiCache Instanceの稼働状況に合わせるために、count変数での条件分岐を追加
+  zone_id = aws_route53_zone.this.zone_id
+  name    = "cache.${aws_route53_zone.this.name}"
+  type    = "CNAME"
+  ttl     = 300
 
-#   records = [
-#     data.terraform_remote_state.cache_foobar.outputs.elasticache_replication_group_this_primary_endpoint_address
-#   ]
-# }
+  records = [
+    data.terraform_remote_state.cache_foobar.outputs.elasticache_replication_group_this_primary_endpoint_address
+  ]
+}
