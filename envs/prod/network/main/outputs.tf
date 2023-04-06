@@ -10,9 +10,9 @@ output "security_group_db_foobar_id" {
   value = aws_security_group.db_foobar.id
 }
 
-# output "security_group_cache_foobar_id" {
-#   value = aws_security_group.cache_foobar.id
-# }
+output "security_group_cache_foobar_id" {
+  value = aws_security_group.cache_foobar.id
+}
 
 output "subnet_public" {
   value = aws_subnet.public

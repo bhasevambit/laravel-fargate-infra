@@ -78,25 +78,25 @@ resource "aws_security_group" "db_foobar" {
 }
 
 # /// コストインパクト低のため、削除不要 ///
-# resource "aws_security_group" "cache_foobar" {
-#   name   = "${aws_vpc.this.tags.Name}-cache-foobar"
-#   vpc_id = aws_vpc.this.id
+resource "aws_security_group" "cache_foobar" {
+  name   = "${aws_vpc.this.tags.Name}-cache-foobar"
+  vpc_id = aws_vpc.this.id
 
-#   ingress {
-#     from_port = 0
-#     to_port   = 0
-#     protocol  = "-1"
-#     self      = true  #trueの場合、本セキュリティグループ自身が付けられたリソースからの通信が許可される
-#   }
+  ingress {
+    from_port = 0
+    to_port   = 0
+    protocol  = "-1"
+    self      = true #trueの場合、本セキュリティグループ自身が付けられたリソースからの通信が許可される
+  }
 
-#   egress {
-#     from_port   = 0
-#     to_port     = 0
-#     protocol    = "-1"
-#     cidr_blocks = ["0.0.0.0/0"]
-#   }
+  egress {
+    from_port   = 0
+    to_port     = 0
+    protocol    = "-1"
+    cidr_blocks = ["0.0.0.0/0"]
+  }
 
-#   tags = {
-#     Name = "${aws_vpc.this.tags.Name}-cache-foobar"
-#   }
-# }
+  tags = {
+    Name = "${aws_vpc.this.tags.Name}-cache-foobar"
+  }
+}
