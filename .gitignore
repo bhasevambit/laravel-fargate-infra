@@ -5,5 +5,4 @@
 
 **/.infracost/*
 
-AWS_Cost_Impact_Resources_Activate.sh
-AWS_Cost_Impact_Resources_Deactivate.sh
+secret_shell_variables.config
