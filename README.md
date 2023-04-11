@@ -11,3 +11,7 @@ This Repository is practice for Terraform and AWS Cloud Native Architecture, and
 ### Deactivation
 
 `./AWS_Cost_Impact_Resources_Deactivate.sh`
+
+## Note
+
+- "secret_shell_variables.config" File is needed
